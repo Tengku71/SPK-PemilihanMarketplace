@@ -1,12 +1,12 @@
-@extends('layouts.edit')
+@extends('layouts.perhitungan')
 
 @section('title')
-  Edit Bobot
+  Perhitungan
 @endsection
 
 @section('content')
   <div class="content col bg-info">
-    <div class="mb-2 mt-2 d-flex align-items-center justify-content-between">
+    <div class="mb-4 mt-2 d-flex align-items-center justify-content-between">
       <div class="d-flex align-items-center">
         <h3 class="ms-4 me-2 text-light fw-bold d-inline">Sistem Pendukung Keputusan Pemilihan Marketplace</h3>
         <div class="" type="button" data-bs-toggle="modal" data-bs-target="#penjelasan">
@@ -44,49 +44,60 @@
         </div>
       </div>
     </div>
-    <div class="ms-4 me-4 bg-light rounded-3 shadow me-2 mb-3 px-3 bg-body-tertiary" style="height: 87vh;">
-      <h2 class="pt-2">Edit Bobot</h2>
-      <form class="pt-4" action="{{ url('edit/bobot') }}" method="POST">
-        @METHOD('PATCH')
-        @CSRF
-        <div class="row mb-3">
-          <p class="col-10 offset-2"><span class="text-danger">*</span>Pastikan total dari bobot adalah 100</p>
-          <p class="col-10 offset-2">semakin tinggi nilai dari bobot, kriteria tersebut semakin diprioritaskan</p>
-          <label for="kriteria" class="col-2 fs-5 d-flex align-items-center">Bobot</label>
-          <div class="col gap-2 d-flex flex-row justify-content-around card bg-transparent border-0 w-25">
-            <div class="mt-1 bg-body-secondary px-2 py-2 rounded-2">
-              <p class="fw-medium mb-0">Kelengkapan Produk</p>
-              <input type="text" class="form-control" id="b1" name="b1" value="{{ $bbt['b1'] }}">
-            </div>
-            <div class="mt-1 bg-dark-subtle px-2 py-2 rounded-2">
-              <p class="fw-medium mb-0">Desain Antarmuka</p>
-              <input type="text" class="form-control" id="b2" name="b2" value="{{ $bbt['b2'] }}">
-            </div>
-            <div class="mt-1 bg-body-secondary px-2 py-2 rounded-2">
-              <p class="fw-medium mb-0">Tanggapan Pelayanan</p>
-              <input type="text" class="form-control" id="b3" name="b3" value="{{ $bbt['b3'] }}">
-            </div>
-            <div class="mt-1 bg-dark-subtle px-2 py-2 rounded-2">
-              <p class="fw-medium mb-0">Proses Transaksi</p>
-              <input type="text" class="form-control" id="b4" name="b4" value="{{ $bbt['b4'] }}">
-            </div>
-            <div class="mt-1 bg-body-secondary px-2 py-2 rounded-2">
-              <p class="fw-medium mb-0">Diskon</p>
-              <input type="text" class="form-control" id="b5" name="b5" value="{{ $bbt['b5'] }}">
-            </div>
-          </div>
-          @if(session('error'))
-            <div class="alert alert-danger mt-2 mx-2">
-              {{ session('error') }}
-            </div>
-          @endif
-          @if(session('success'))
-            <div class="alert alert-success mt-2 mx-2">
-              {{ session('success') }}
-            </div>
-          @endif
+    <div class="ms-4 me-4 pt-3 bg-light rounded-3 shadow me-2 mb-3 px-3 bg-body-tertiary" style="height: 84vh;">
+      <div class="normalisasi">
+      <div class="d-inline ps-1">
+          <a href="{{ url('perhitungan') }}" class="btn btn-success text-light">Kriteria</a>
+          <a href="{{ url('perhitungan/ranking') }}" class="btn btn-success text-light">Rangking</a>
+      </div>
+      <div class=" d-inline align-items-center">
+        <form action="{{ url('perhitungan/cari')}}" class="d-inline ms-2" method="GET">
+          <input type="text" name="cari" placeholder="Cari Alternatif .." class="form-control w-50 d-inline pb-2" value="{{ old('cari') }}">
+          <button type="submit" class="btn btn-info text-light ms-2">Cari</button>
+        </form>
+        <div class="d-inline">
+          <a href="{{ url('perhitungan/normalisasi') }}" class="btn btn-info text-light">Refresh</a>
         </div>
-        <button type="submit" class="btn btn-primary">Update</button>
-      </form>
+      </div>
+      <div class="mx-1 pt-2 gap-2">
+        <table class="table text-center border rounded-3 align-items-center">
+          <thead>
+            <tr>
+              <th class="col">No.</th>
+              <th class="col">Alternatif</th>
+              <th class="col">Kelengkapan Produk</th>
+              <th class="col">Desain Antarmuka</th>
+              <th class="col">Tanggapan Pelayanan</th>
+              <th class="col">Proses Transaksi</th>
+              <th class="col">Diskon</th>
+              <th class="col">Preferensi</th>
+            </tr>
+          </thead>
+          @php
+            $i = $alts->firstItem();
+          @endphp
+          <tbody>
+          @foreach ($alts as $alt)
+            @if (isset($norms[$alt->id]))
+              <tr>
+                <td>{{ $loop->iteration + ($alts->currentPage() - 1) * $alts->perPage() }}</td>
+                <td>{{ $alt->a }}</td>
+                <td>{{ $norms[$alt->id]->c1 }}</td>
+                <td>{{ $norms[$alt->id]->c2 }}</td>
+                <td>{{ $norms[$alt->id]->c3 }}</td>
+                <td>{{ $norms[$alt->id]->c4 }}</td>
+                <td>{{ $norms[$alt->id]->c5 }}</td>
+                <td>{{ $pfs[$alt->id]->v }}</td>
+              </tr>
+            @endif
+          @endforeach
+          </tbody>
+        </table>
+      </div>
+      <div class="fs-5 mx-2">
+          {{ $alts->links('vendor.pagination.bootstrap-5') }}
+      </div>
+      </div>
     </div>
+  </div>
 @endsection

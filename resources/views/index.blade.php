@@ -10,8 +10,11 @@
 <body>
   <nav class="navbar navbar-expand-lg bg-info py-3 sticky-top mb-5">
     <div class="container-fluid d-flex justify-content-between">
-      <a class="navbar-brand text-light fw-bold fs-3" href="#">SPK Pemilihan Marketplace</a>
-      <div class="" id="navbarNav">
+      <a class="navbar-brand text-light fw-bold fs-4 fs-md-3 pb-3" href="#">SPK Pemilihan Marketplace</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
         <ul class="navbar-nav gap-4">
           <li class="nav-item">
             <button class="nav-link text-light fs-5 fw-medium" onclick="scrollToSection('#beranda')">Beranda</button>
@@ -39,9 +42,9 @@
   <div class="py-5"></div>
   <div class="container-fluid g-0 bg-light py-5" id="tentang">
     <div class="fs-3 p-0 fw-bold text-center mb-5">Mengapa Memilih SPK Pemilihan Marketplace?</div>
-    <div class="d-flex justify-content-around mt-3 gap-3 px-3">
-      <div class="w-25">
-        <div class="d-flex flex-row align-items-center gap-2 mb-2">
+    <div class="d-flex flex-md-row flex-column justify-content-md-around align-items-center mt-3 gap-5 gap-md-3 px-3">
+      <div class="col-6 col-md-3 text-center text-md-start">
+        <div class="d-flex flex-column flex-md-row justify-content-center justify-content-md-start align-items-center gap-2 mb-2">
           <div class="bg-info-subtle rounded-3 px-2 py-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-card-checklist text-secondary" viewBox="0 0 16 16">
               <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
@@ -54,8 +57,8 @@
         </div>
         <p class="fs-5 fw-normal">Evaluasi marketplace berdasarkan berbagai kriteria yang Anda tentukan.</p>
       </div>
-      <div class="w-25">
-        <div class="d-flex flex-row align-items-center gap-2 mb-2">
+      <div class="col-6 col-md-3 text-center text-md-start">
+        <div class="d-flex flex-column flex-md-row justify-content-center justify-content-md-start align-items-center gap-2 mb-2">
           <div class="bg-info-subtle rounded-3 px-2 py-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-list-stars text-secondary" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5"/>
@@ -68,8 +71,8 @@
         </div>
         <p class="fs-5 fw-normal">Hasilkan rekomendasi berdasarkan peringkat tertinggi berdasarkan bobot yang Anda tetapkan.</p>
       </div>
-      <div class="w-25">
-        <div class="d-flex flex-row align-items-center gap-2 mb-2">
+      <div class="col-6 col-md-3 text-center text-md-start">
+        <div class="d-flex flex-column flex-md-row justify-content-center justify-content-md-start align-items-center gap-2 mb-2">
           <div class="bg-info-subtle rounded-3 px-2 py-2">
           <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-patch-check text-secondary" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M10.354 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
@@ -90,8 +93,8 @@
 
   <div class="container-fluid g-0 py-5" id="fitur">
     <div class="fs-3 p-0 fw-bold text-center mb-4">Fitur - Fitur</div>
-    <div class="d-flex justify-content-around px-4">
-      <div class="bg-light d-flex justify-content-center flex-column align-items-center py-3 px-4 w-25 gap-2 rounded-3">
+    <div class="d-flex align-items-center flex-column flex-md-row justify-content-md-around gap-md-0 gap-4 px-4" style="height: 60vh">
+      <div class="bg-light d-flex justify-content-center flex-column align-items-center py-3 px-4 col-md-3 col-9 h-100 gap-2 rounded-3">
         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-clipboard2-data" viewBox="0 0 16 16">
           <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
           <path d="M3 2.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 0 0-1h-.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1H12a.5.5 0 0 0 0 1h.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5z"/>
@@ -100,7 +103,7 @@
         <p class="fs-5 fw-medium">Evaluasi Kriteria</p>
         <p class="fs-5 fw-normal">Menganalisis marketplace berdasarkan berbagai faktor seperti kelengkapan produk, desain antarmuka, tanggapan pelayanan, proses transaksi dan diskon.</p>
       </div>
-      <div class="bg-light d-flex justify-content-center flex-column align-items-center py-3 px-4 w-25 gap-2 rounded-3">
+      <div class="bg-light d-flex align-items-center justify-content-center flex-column align-items-center py-3 px-4 col-md-3 col-9 h-100 gap-2 rounded-3">
         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
           <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
           <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"/>
@@ -109,7 +112,7 @@
         <p class="fs-5 fw-medium">Laporan Detail</p>
         <p class="fs-5 fw-normal">Menghasilkan laporan detail untuk membantu dalam proses pengambilan keputusan Anda.</p>
       </div>
-      <div class="bg-light d-flex justify-content-center flex-column align-items-center py-3 px-4 w-25 gap-2 rounded-3">
+      <div class="bg-light d-flex justify-content-center flex-column align-items-center py-3 px-4 col-md-3 col-9 h-100 gap-2 rounded-3">
         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-trophy" viewBox="0 0 16 16">
           <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5q0 .807-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33 33 0 0 1 2.5.5m.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935m10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935M3.504 1q.01.775.056 1.469c.13 2.028.457 3.546.87 4.667C5.294 9.48 6.484 10 7 10a.5.5 0 0 1 .5.5v2.61a1 1 0 0 1-.757.97l-1.426.356a.5.5 0 0 0-.179.085L4.5 15h7l-.638-.479a.5.5 0 0 0-.18-.085l-1.425-.356a1 1 0 0 1-.757-.97V10.5A.5.5 0 0 1 9 10c.516 0 1.706-.52 2.57-2.864.413-1.12.74-2.64.87-4.667q.045-.694.056-1.469z"/>
         </svg>
@@ -121,17 +124,26 @@
 
   <div class="py-5"></div>
   <div class="py-5"></div>
+  <div class="py-5 d-md-none"></div>
+  <div class="py-5 d-md-none"></div>
+  <div class="py-5 d-md-none"></div>
+  <div class="py-5 d-md-none"></div>
+  <div class="py-5 d-md-none"></div>
+  <div class="py-5 d-md-none"></div>
+  <div class="py-5 d-md-none"></div>
+  <div class="py-5 d-md-none"></div>
+  <div class="py-5 d-md-none"></div>
 
-  <div class="container-fluid g-0 bg-light px-3 py-4 d-flex justify-content-between" id="footer">
-    <div class="">
+  <div class="container-fluid g-0 bg-light px-md-3 px-4 py-4 d-flex justify-content-between" id="footer">
+    <div class="col">
       <p class="fs-2 fw-medium">SPK Pemilihan Marketplace</p>
-      <div class="d-flex gap-3">
-        <p class="fs-5 fw-medium">Email :</p>
-        <p class="fs-5 fw-normal">spkpemilihanmarketplace@gmail.com</p>
+      <div class="row">
+        <p class="col-md-1 col fs-5 fw-medium pe-0">Email :</p>
+        <p class="col fs-5 fw-normal ps-md-0">spkpemilihanmarketplace@gmail.com</p>
       </div>
       <p class="fs-5 fw-normal m-0">&#169; Tengku Dimas Aditya</p>
     </div>
-    <div class="ms-5 mt-5">
+    <div class="ms-md-5 mt-5 col-3 d-md-flex justify-content-md-end">
       <a class="link-underline link-underline-opacity-0" href="https://instagram.com/dimas_417" target="_blank">
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-instagram text-dark" viewBox="0 0 16 16">
           <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>

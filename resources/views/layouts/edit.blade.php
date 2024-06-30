@@ -8,9 +8,9 @@
   
   <title>@yield('title')</title>
 </head>
-<body>
-  <div class="main row container-fluid g-0 w-100 " style="height: 100vh;">
-    <div class="sideNav col-1 d-block shadow me-2 bg-body-tertiary">
+<body class="bg-info">
+  <div class="main row container-fluid g-0 w-100 ">
+    <div class="sideNav col-1 d-block vh-100 shadow me-2 bg-body-tertiary">
       <div class="menuBar d-flex justify-content-center align-items-center mb-5 pb-5 mt-3" style="height: 17vh;">
         <button href="" class="menu-bar py-0 px-2 m-0 g-0 btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" fill="black" class="bi bi-list" viewBox="0 0 16 16">

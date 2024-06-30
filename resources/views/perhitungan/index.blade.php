@@ -1,12 +1,12 @@
 @extends('layouts.perhitungan')
 
 @section('title')
-  Perhitungan
+  Dashboard
 @endsection
 
 @section('content')
   <div class="content col bg-info">
-    <div class="mb-4 mt-2 d-flex align-items-center justify-content-between">
+    <div class="mb-2 mt-2 d-flex align-items-center justify-content-between">
       <div class="d-flex align-items-center">
         <h3 class="ms-4 me-2 text-light fw-bold d-inline">Sistem Pendukung Keputusan Pemilihan Marketplace</h3>
         <div class="" type="button" data-bs-toggle="modal" data-bs-target="#penjelasan">
@@ -44,17 +44,18 @@
         </div>
       </div>
     </div>
-    <div class="ms-4 me-4 pt-3 bg-light rounded-3 shadow me-2 mb-3 px-3 bg-body-tertiary" style="height: 84vh;">
-      <div class="normalisasi">
-      <div class=" d-inline align-items-center">
-        <form action="{{ url('perhitungan/cari')}}" class="d-inline ms-2" method="GET">
+    <div class="ms-4 me-4 pt-3 bg-light rounded-3 shadow me-2 mb-3 px-3 bg-body-tertiary" style="height: 87vh;">
+      <div class="ps-1 d-inline align-items-center">
+        <div class="d-inline">
+          <a href="{{ url('perhitungan/normalisasi') }}" class="btn btn-success text-light">Normalisasi</a>
+        </div>
+        <form action="{{ url('dashboard/cari')}}" class="d-inline ms-2" method="GET">
           <input type="text" name="cari" placeholder="Cari Alternatif .." class="form-control w-50 d-inline pb-2" value="{{ old('cari') }}">
           <button type="submit" class="btn btn-info text-light ms-2">Cari</button>
         </form>
         <div class="d-inline">
           <a href="{{ url('perhitungan') }}" class="btn btn-info text-light">Refresh</a>
         </div>
-        <a href="{{ url('perhitungan/ranking') }}" class="btn btn-info text-light">Rangking</a>
       </div>
       <div class="mx-1 pt-2 gap-2">
         <table class="table text-center border rounded-3 align-items-center">
@@ -67,7 +68,7 @@
               <th class="col">Tanggapan Pelayanan</th>
               <th class="col">Proses Transaksi</th>
               <th class="col">Diskon</th>
-              <th class="col">Preferensi</th>
+              <th class="col-2">Aksi</th>
             </tr>
           </thead>
           @php
@@ -75,26 +76,56 @@
           @endphp
           <tbody>
           @foreach ($alts as $alt)
-            @if (isset($norms[$alt->id]))
+            @if (isset($krs[$alt->id]))
               <tr>
                 <td>{{ $loop->iteration + ($alts->currentPage() - 1) * $alts->perPage() }}</td>
                 <td>{{ $alt->a }}</td>
-                <td>{{ $norms[$alt->id]->c1 }}</td>
-                <td>{{ $norms[$alt->id]->c2 }}</td>
-                <td>{{ $norms[$alt->id]->c3 }}</td>
-                <td>{{ $norms[$alt->id]->c4 }}</td>
-                <td>{{ $norms[$alt->id]->c5 }}</td>
-                <td>{{ $pfs[$alt->id]->v }}</td>
+                <td>{{ $krs[$alt->id]->c1 }}</td>
+                <td>{{ $krs[$alt->id]->c2 }}</td>
+                <td>{{ $krs[$alt->id]->c3 }}</td>
+                <td>{{ $krs[$alt->id]->c4 }}</td>
+                <td>{{ $krs[$alt->id]->c5 }}</td>
+                <td>
+                  <div class="d-flex gap-1 justify-content-center">
+                    <a href='{{ "dashboard/$alt->id/edit" }}' class="btn btn-warning">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-pencil" viewBox="0 0 16 16">
+                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+                        </svg>
+                    </a>
+                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $alt->id }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-dash" viewBox="0 0 16 16">
+                            <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
+                        </svg>
+                    </button>                              
+                    <!-- Modal -->
+                    <div class="modal fade" id="deleteModal{{ $alt->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $alt->id }}" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="deleteModal{{ $alt->id }}">Apakah {{ $alt->a }} Akan di Hapus?</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                            <form action="{{ url("dashboard/$alt->id") }}" method="POST">
+                              @method('DELETE')
+                              @csrf
+                              <button class="btn btn-danger" type="submit">Iya</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
               </tr>
             @endif
           @endforeach
           </tbody>
         </table>
       </div>
-      <div class="fs-5 mx-2">
-          {{ $alts->links('vendor.pagination.bootstrap-5') }}
-      </div>
+      <div class="fs-5">
+        {{ $alts->links('vendor.pagination.bootstrap-5') }}
       </div>
     </div>
-  </div>
 @endsection

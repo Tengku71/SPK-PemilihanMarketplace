@@ -8,7 +8,7 @@
   <title>Lupa Password</title>
 </head>
 <body class="bg-light m-0 p-0 overflow-hidden d-flex align-items-center justify-content-center" style="height: 100vh">
-  <div class="w-50 my-auto rounded-3 shadow bg-info px-2 py-2" style="height: 43vh">
+  <div class="col-11 col-md-6 my-auto rounded-3 shadow bg-info px-2 py-2" style="height: 43vh">
     <div class="rounded-3 bg-dark" style="height: 40vh">
       <p class="fs-3 fw-medium text-light text-center pt-2" >Lupa Password</p>
       <!-- Error Modal -->
@@ -39,7 +39,7 @@
       <form class="pt-4" action="{{ url('lupa-password') }}" method="post">
         @CSRF
         <div class="row mb-3 ps-4 pe-4">
-          <label for="email" class="form-label col text-light fw-bold">Email address</label>
+          <label for="email" class="form-label col-12 col-md text-light fw-bold p-0">Email address</label>
           <input type="emai" class="form-control col" id="email" name="email" placeholder="Masukkan email reset password">
         </div>
         <div class="d-flex  justify-content-between me-3 ms-3 mt-3 align-items-center">

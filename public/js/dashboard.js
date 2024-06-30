@@ -28,8 +28,9 @@ menuBar.addEventListener('mouseleave', function() {
 });
 menuBar.addEventListener('click', function(){
   navExpand.classList.remove('d-none')
-  navExpand.classList.add('d-block')
+  navExpand.classList.add('d-md-block')
   sideNav.classList.add('d-none');
+  sideNav.classList.remove('d-md-block');
 });
 
 const dashboardBtn = document.querySelector('.bi-house-door');
@@ -101,10 +102,10 @@ menuClose.addEventListener('mouseleave', function() {
   menu_close.classList.remove('border-3');
 })
 menuClose.addEventListener('click', function(){
-  navExpand.classList.remove('d-block');
+  navExpand.classList.remove('d-md-block');
   navExpand.classList.add('d-none');
   sideNav.classList.remove('d-none');
-  sideNav.classList.add('d-block');
+  sideNav.classList.add('d-md-block');
 })
 
 

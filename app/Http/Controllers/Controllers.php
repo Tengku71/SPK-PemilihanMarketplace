@@ -21,15 +21,26 @@ class Controllers extends Controller
         return view('index');
     }
 
-    public function dashboard(){
+    public function dashboard(Request $request){
 
         $user = Auth::user();
 
+        $sortOrder = $request->get('sortOrder', 'desc');
 
-        $alts = $user->alternatifs()->paginate(6);
+    // Fetch data and sort according to the preference
+        $preferensi = $user->preferensi->keyBy('kr_id');
+        $alts = $user->alternatifs()
+            ->leftJoin('preferensis', 'alternatifs.id', '=', 'preferensis.kr_id')
+            ->where('preferensis.user_id', $user->id)
+            ->orderBy('preferensis.v', $sortOrder)
+            ->select('alternatifs.*')
+            ->paginate(6)
+            ->appends(['sortOrder' => $sortOrder]);
+
         $bbt = $user->bobots->first()->toArray();
-        $kr = $user->kriterias->keyBy('alt_id');
-        return view('alternatif.dashboard', ['alts' => $alts, 'bbt' => $bbt, 'krs' => $kr]);
+        $pfs = $user->preferensi->keyBy('kr_id'); 
+
+        return view('alternatif.dashboard', ['alts' => $alts, 'bbt' => $bbt, 'pfs' => $pfs, 'sortOrder' => $sortOrder]);
     }
     
     public function deleteAlter(string $id){
@@ -109,9 +120,9 @@ class Controllers extends Controller
         $cari = $request->cari;
 
         $alts = $user->alternatifs()->where('a', 'like', '%' . $cari . '%')->paginate(6);
-        $kr = $user->kriterias->keyBy('alt_id');
+        $pfs = $user->preferensi->keyBy('kr_id'); 
 
-        return view('alternatif.dashboard', ['bbt' => $bbt, 'alts' => $alts, 'krs' => $kr]);
+        return view('alternatif.dashboard', ['bbt' => $bbt, 'alts' => $alts, 'pfs' => $pfs]);
     }
     public function tambahAlter(){
         $user = Auth::user();
@@ -327,12 +338,25 @@ class Controllers extends Controller
         $user = Auth::user();
 
 
+        $alts = $user->alternatifs()->paginate(6);
+        $bbt = $user->bobots->first()->toArray();
+        $norms = $user->normalisasi->keyBy('kr_id');
+        $pfs = $user->preferensi->keyBy('kr_id'); 
+        $kr = $user->kriterias->keyBy('alt_id');
+        // dd($pfs);
+        return view('perhitungan.index', ['alts' => $alts, 'bbt' => $bbt, 'norms' => $norms, 'pfs' => $pfs, 'krs' => $kr]);
+    }
+
+    public function normalisasi(){
+        $user = Auth::user();
+
+
         $alts = $user->alternatifs()->paginate(8);
         $bbt = $user->bobots->first()->toArray();
         $norms = $user->normalisasi->keyBy('kr_id');
         $pfs = $user->preferensi->keyBy('kr_id'); 
         // dd($pfs);
-        return view('perhitungan.index', ['alts' => $alts, 'bbt' => $bbt, 'norms' => $norms, 'pfs' => $pfs]);
+        return view('perhitungan.normalisasi', ['alts' => $alts, 'bbt' => $bbt, 'norms' => $norms, 'pfs' => $pfs]);
     }
     
     public function cariAltNorm(Request $request){
@@ -592,7 +616,7 @@ class Controllers extends Controller
         $request->session()->regenerateToken();
         
         // Redirect to the login page or any other page
-        return redirect('login')->with('status', 'Anda telah berhasil logout.');
+        return redirect('/')->with('status', 'Anda telah berhasil logout.');
     }
 
     public function profile(){

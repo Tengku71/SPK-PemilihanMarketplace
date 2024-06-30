@@ -45,16 +45,18 @@
       </div>
     </div>
     <div class="ms-4 me-4 pt-3 bg-light rounded-3 shadow me-2 mb-3 px-3 bg-body-tertiary" style="height: 84vh;">
-      <div class="normalisasi">
+      <div class="rangking">
+      <div class="d-inline ps-1">
+        <a href="{{ url('perhitungan') }}" class="btn btn-success text-light">Kriteria</a>
+      </div>
       <div class=" d-inline align-items-center">
         <form action="{{ url('perhitungan/cari')}}" class="d-inline ms-2" method="GET">
           <input type="text" name="cari" placeholder="Cari Alternatif .." class="form-control w-50 d-inline pb-2" value="{{ old('cari') }}">
           <button type="submit" class="btn btn-info text-light ms-2">Cari</button>
         </form>
         <div class="d-inline">
-          <a href="{{ url('perhitungan') }}" class="btn btn-info text-light">Refresh</a>
+          <a href="{{ url('perhitungan/normalisasi') }}" class="btn btn-info text-light">Refresh</a>
         </div>
-        <a href="{{ url('perhitungan/ranking') }}" class="btn btn-info text-light">Rangking</a>
       </div>
       <div class="mx-1 pt-2 gap-2">
         <table class="table text-center border rounded-3 align-items-center">
