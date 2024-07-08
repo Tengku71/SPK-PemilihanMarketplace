@@ -23,9 +23,9 @@
           </svg>
         </a>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="{{ url('profile') }}">Profile</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ url('logout') }}">Logout</a>
+          <a class="dropdown-item" href="{{ url('profile') }}">Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{{ url('logout') }}">Logout</a>
         </div>
       </div>
       <nav class="navbar navbar-expand-lg bg-none col-1 d-block d-md-none me-5">
@@ -107,7 +107,7 @@
         </form>
       </div>
       </div>
-      <div class="mx-1 pt-2 gap-2 overflow-auto" style="height: 71vh;">
+      <div class="mx-1 pt-2 gap-2 overflow-auto z-n1" style="height: 71vh;">
         <table class="table text-center border rounded-3 align-items-center ">
           <thead class="sticky-top">
               <tr>

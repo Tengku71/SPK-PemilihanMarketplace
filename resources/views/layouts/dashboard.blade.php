@@ -7,6 +7,11 @@
   <script src="{{ url('bootstrap5/js/bootstrap.bundle.min.js') }}"></script>
   
   <title>@yield('title')</title>
+  <style>
+    .show{
+      z-index: 1500;
+    }
+  </style>
 </head>
 <body class="bg-info">
   <div class="main row container-fluid g-0 w-100">
