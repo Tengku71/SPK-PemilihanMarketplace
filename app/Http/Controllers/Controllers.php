@@ -26,21 +26,21 @@ class Controllers extends Controller
         $user = Auth::user();
 
         $sortOrder = $request->get('sortOrder', 'desc');
+        $perPage = $request->input('per_page', 7);
 
-    // Fetch data and sort according to the preference
-        $preferensi = $user->preferensi->keyBy('kr_id');
         $alts = $user->alternatifs()
             ->leftJoin('preferensis', 'alternatifs.id', '=', 'preferensis.kr_id')
             ->where('preferensis.user_id', $user->id)
             ->orderBy('preferensis.v', $sortOrder)
             ->select('alternatifs.*')
-            ->paginate(6)
-            ->appends(['sortOrder' => $sortOrder]);
+            ->paginate($perPage)
+            ->appends(['sortOrder' => $sortOrder,
+                        'per_page' => $perPage]);
 
         $bbt = $user->bobots->first()->toArray();
         $pfs = $user->preferensi->keyBy('kr_id'); 
 
-        return view('alternatif.dashboard', ['alts' => $alts, 'bbt' => $bbt, 'pfs' => $pfs, 'sortOrder' => $sortOrder]);
+        return view('alternatif.dashboard', ['alts' => $alts, 'bbt' => $bbt, 'pfs' => $pfs, 'sortOrder' => $sortOrder, 'perPage' => $perPage]);
     }
     
     public function deleteAlter(string $id){
@@ -119,7 +119,7 @@ class Controllers extends Controller
         $bbt = $user->bobots->first()->toArray();
         $cari = $request->cari;
 
-        $alts = $user->alternatifs()->where('a', 'like', '%' . $cari . '%')->paginate(6);
+        $alts = $user->alternatifs()->where('a', 'like', '%' . $cari . '%')->paginate(7);
         $pfs = $user->preferensi->keyBy('kr_id'); 
 
         return view('alternatif.dashboard', ['bbt' => $bbt, 'alts' => $alts, 'pfs' => $pfs]);
@@ -228,18 +228,6 @@ class Controllers extends Controller
 
 
 
-    public function preferensi(){
-        $user = Auth::user();
-
-    
-
-        $bbt = $user->bobots->first()->toArray();
-        $pf = $user->preferensi;
-        $alt = $user->alternatifs;
-        return view('alternatif.preferensi', ['bbt' => $bbt, 'alt' => $alt, 'pf' => $pf]);
-
-    }
-
      public function login()
     {
         if (Auth::check()) {
@@ -334,11 +322,11 @@ class Controllers extends Controller
         }
     }
 
-    public function perhitungan(){
+    public function perhitungan(Request $request){
         $user = Auth::user();
 
-
-        $alts = $user->alternatifs()->paginate(6);
+        $perPage = $request->input('per_page', 7);
+        $alts = $user->alternatifs()->paginate($perPage);
         $bbt = $user->bobots->first()->toArray();
         $norms = $user->normalisasi->keyBy('kr_id');
         $pfs = $user->preferensi->keyBy('kr_id'); 
@@ -347,11 +335,11 @@ class Controllers extends Controller
         return view('perhitungan.index', ['alts' => $alts, 'bbt' => $bbt, 'norms' => $norms, 'pfs' => $pfs, 'krs' => $kr]);
     }
 
-    public function normalisasi(){
+    public function normalisasi(Request $request){
         $user = Auth::user();
 
-
-        $alts = $user->alternatifs()->paginate(8);
+        $perPage = $request->input('per_page', 10);
+        $alts = $user->alternatifs()->paginate($perPage);
         $bbt = $user->bobots->first()->toArray();
         $norms = $user->normalisasi->keyBy('kr_id');
         $pfs = $user->preferensi->keyBy('kr_id'); 
@@ -367,14 +355,16 @@ class Controllers extends Controller
         $alts = $user->alternatifs()->where('a', 'like', '%' . $cari . '%')->paginate(8);
         $norms = $user->normalisasi->keyBy('kr_id');
         $pfs = $user->preferensi->keyBy('kr_id'); 
+        $kr = $user->kriterias->keyBy('alt_id');
         
-        return view('perhitungan.index', ['alts' => $alts, 'bbt' => $bbt, 'norms' => $norms, 'pfs' => $pfs]);
+        return view('perhitungan.index', ['alts' => $alts, 'bbt' => $bbt, 'norms' => $norms, 'pfs' => $pfs, 'krs' => $kr]);
     }
     
-    public function rangking(){
+    public function rangking(Request $request){
         $user = Auth::user();
         
-        $alts = $user->alternatifs()->get();
+        $perPage = $request->input('per_page', 10);
+        $alts = $user->alternatifs()->paginate($perPage);
         $bbt = $user->bobots->first()->toArray();
         $norms = $user->normalisasi->keyBy('kr_id');
         $pfs = $user->preferensi->keyBy('kr_id');
@@ -384,7 +374,7 @@ class Controllers extends Controller
             return $alt;
         })->sortByDesc('preferensi');
         
-        $perPage = 8;
+        $perPage = 10;
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $currentItems = $alts->slice(($currentPage - 1) * $perPage, $perPage)->all();
         $alts = new LengthAwarePaginator($currentItems, $alts->count(), $perPage, $currentPage, [

@@ -32,7 +32,6 @@ Route::middleware('auth.check')->group(function () {
   Route::post('tambah-alter', [Controllers::class, 'tambahAlt']);
   Route::get('tambah-alter', [Controllers::class, 'tambahAlter']);
   
-  Route::get('preferensi', [Controllers::class, 'preferensi']);
   Route::get('perhitungan/cari', [Controllers::class, 'cariAltNorm']);
   Route::get('perhitungan/ranking', [Controllers::class, 'rangking']);
   Route::get('perhitungan/normalisasi', [Controllers::class, 'normalisasi']);

@@ -88,18 +88,28 @@
         <div class="col-md-2 d-none d-md-block">
           <a href="{{ url('dashboard') }}" class="btn btn-info text-light">Refresh</a>
         </div>
-        <div class="d-flex col-md-3 col justify-content-end">
-          <form method="GET"  action="{{ url('dashboard') }}">
-            <select name="sortOrder" class="form-select  py-2" id="sortOrder" onchange="this.form.submit()">
-              <option value="desc" {{ request('sortOrder') == 'desc' ? 'selected' : '' }}>Tertinggi</option>
-              <option value="asc" {{ request('sortOrder') == 'asc' ? 'selected' : '' }}>Terendah</option>
-            </select>
-          </form>
-        </div>
+        <div class="d-flex col-md-3 justify-content-end">
+          <form method="GET" class="d-flex gap-2" action="{{ url('dashboard') }}">
+            <div class="form-group">
+              <select name="sortOrder" class="form-select py-2" id="sortOrder" onchange="this.form.submit()">
+                <option value="desc" {{ request('sortOrder') == 'desc' ? 'selected' : '' }}>Tertinggi</option>
+                <option value="asc" {{ request('sortOrder') == 'asc' ? 'selected' : '' }}>Terendah</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <select name="per_page" class="form-select py-2" id="per_page" onchange="this.form.submit()">
+                <option value="7" {{ request('per_page') == 7 ? 'selected' : '' }}>7</option>
+                <option value="10" {{ request('per_page') == 10 ? 'selected' : '' }}>10</option>
+                <option value="25" {{ request('per_page') == 25 ? 'selected' : '' }}>25</option>
+                <option value="50" {{ request('per_page') == 50 ? 'selected' : '' }}>50</option>
+              </select>
+            </div>
+        </form>
       </div>
-      <div class="mx-1 pt-2 gap-2 overflow-auto">
+      </div>
+      <div class="mx-1 pt-2 gap-2 overflow-auto" style="height: 71vh;">
         <table class="table text-center border rounded-3 align-items-center ">
-          <thead>
+          <thead class="sticky-top">
               <tr>
                   <th class="col-1">No.</th>
                   <th class="col">Alternatif</th>

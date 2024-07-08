@@ -45,23 +45,34 @@
       </div>
     </div>
     <div class="ms-4 me-4 pt-3 bg-light rounded-3 shadow me-2 mb-3 px-3 bg-body-tertiary" style="height: 84vh;">
-      <div class="normalisasi">
-      <div class="d-inline ps-1">
-          <a href="{{ url('perhitungan') }}" class="btn btn-success text-light">Kriteria</a>
-          <a href="{{ url('perhitungan/ranking') }}" class="btn btn-success text-light">Rangking</a>
-      </div>
-      <div class=" d-inline align-items-center">
-        <form action="{{ url('perhitungan/cari')}}" class="d-inline ms-2" method="GET">
-          <input type="text" name="cari" placeholder="Cari Alternatif .." class="form-control w-50 d-inline pb-2" value="{{ old('cari') }}">
-          <button type="submit" class="btn btn-info text-light ms-2">Cari</button>
-        </form>
-        <div class="d-inline">
+      <div class="normalisasi row ps-1">
+        <div class="col-3 ">
+            <a href="{{ url('perhitungan') }}" class="col btn btn-success text-light">Kriteria</a>
+            <a href="{{ url('perhitungan/ranking') }}" class="col btn btn-success text-light">Rangking</a>
+        </div>
+        <div class="col-5  align-items-center">
+          <form action="{{ url('perhitungan/cari')}}" class="row ms-2" method="GET">
+            <input type="text" name="cari" placeholder="Cari Alternatif .." class="form-control col pb-2" value="{{ old('cari') }}">
+            <button type="submit" class="col-2 btn btn-info text-light ms-2">Cari</button>
+          </form>
+        </div>
+        <div class="col-2">
           <a href="{{ url('perhitungan/normalisasi') }}" class="btn btn-info text-light">Refresh</a>
         </div>
+        <div class="col-1">
+          <form method="GET" action="{{ url()->current() }}">
+            <select name="per_page" id="per_page" class="form-select" onchange="this.form.submit()">
+              <option value="10" {{ request('per_page') == 10 ? 'selected' : '' }}>10</option>
+              <option value="15" {{ request('per_page') == 15 ? 'selected' : '' }}>15</option>
+              <option value="25" {{ request('per_page') == 25 ? 'selected' : '' }}>25</option>
+              <option value="50" {{ request('per_page') == 50 ? 'selected' : '' }}>50</option>
+            </select>
+          </form>
+        </div>
       </div>
-      <div class="mx-1 pt-2 gap-2">
+      <div class="mx-1 pt-2 gap-2 overflow-auto" style="height: 68vh;">
         <table class="table text-center border rounded-3 align-items-center">
-          <thead>
+          <thead class="sticky-top">
             <tr>
               <th class="col">No.</th>
               <th class="col">Alternatif</th>
