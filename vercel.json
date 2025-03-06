@@ -1,6 +1,7 @@
 {
     "version": 2,
     "framework": null,
+<<<<<<< HEAD
     "functions": {
         "api/index.php": { "runtime": "vercel-php@0.4.3" }
     },
@@ -14,6 +15,19 @@
         "APP_ENV": "production",
         "APP_DEBUG": "true",
         "APP_URL": "https://yourprojectdomain.com",
+=======
+  "functions": {
+      "api/index.php": { "runtime": "vercel-php@0.4.3" }
+  },
+  "routes": [{
+      "src": "/(.*)",
+      "dest": "/api/index.php"
+  }],
+  "env": {
+      "APP_ENV": "production",
+      "APP_DEBUG": "true",
+      "APP_URL": "https://pemilihan-marketplace.tengkudimas.my.id",
+>>>>>>> 624cd61354da85fdbea0252be593f9a39544c554
 
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
@@ -22,8 +36,15 @@
         "APP_SERVICES_CACHE": "/tmp/services.php",
         "VIEW_COMPILED_PATH": "/tmp",
 
+<<<<<<< HEAD
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie"
     }
+=======
+      "CACHE_DRIVER": "array",
+      "LOG_CHANNEL": "stderr",
+      "SESSION_DRIVER": "cookie"
+  }
+>>>>>>> 624cd61354da85fdbea0252be593f9a39544c554
 }
